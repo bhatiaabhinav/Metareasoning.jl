@@ -252,7 +252,7 @@ function (env::AWAStarControlEnv)(action::Integer)
     if done
         env.info = Dict(
             :quality => q,
-            :cost => env.awastar.solution_cost
+            :cost => env.awastar.solution_cost,
             :time => t,
             :utility => env.current_utility,
             :interrupted => Int(interrupted),
