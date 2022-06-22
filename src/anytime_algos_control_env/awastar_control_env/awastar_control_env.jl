@@ -259,10 +259,10 @@ function (env::AWAStarControlEnv)(action::Integer)
             :w_av => w_av,
             :nodes_expanded => env.awastar.nodes_expended,
             :num_solutions=>env.awastar.num_solutions)
-        merge!(info, SearchProblem.info(env.search_problem))
+        merge!(env.info, SearchProblem.info(env.search_problem))
     end
 
-    @debug "Step finish" reward done info...
+    @debug "Step finish" reward done env.info...
     env.state = obs(env)
     env.reward = reward
     env.done = done
