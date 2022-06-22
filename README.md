@@ -8,8 +8,9 @@ This package provides RL environments (compatible with [ReinforcementLearning.jl
 
 ## Install Instructions
 
-1. Install [Julia](https://julialang.org/) 1.7.2.
-2. Within the root directory of this package, run the following command:
+1. Clone this repository
+2. Install [Julia](https://julialang.org/) 1.7.2.
+3. Within the root directory of this package, run the following command:
 ```bash
 julia --project=. -e "using Pkg; Pkg.instantiate()"
 ```
