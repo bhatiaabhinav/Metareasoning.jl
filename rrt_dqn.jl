@@ -21,7 +21,7 @@ env = RRTStarControlEnv(max_samples=1000, monitoring_interval=1000÷20,  # Each 
     focus_level = 0.4, initial_focus_index = (2, 2)                     # 40% sampling bias towards the focus region
 )
 
-train = false # Set to false to only evaluate a previously trained model
+train = true # Set to false to only evaluate a previously trained model
 if train
     rm(logdir, force=true, recursive=true)
     mkpath("$logdir/plots")

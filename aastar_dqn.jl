@@ -16,12 +16,12 @@ projectname = "AWAStarMetareasoning"
 interruptible  = true  # True = DQN(t) approach. False = DQN_τ approach.
 
 # ------------- Uncomment for Sliding Puzzle ---------------------------
-# experimentname = "SP-DQN-interruptible=$interruptible"
-# logdir = "logs/$projectname/$experimentname"
-# env = AWAStarControlEnv(SlidingPuzzle(4:4, 50:60); node_budget=100000, monitoring_interval=100000÷20,
-#     α=1, β=log(1+0.25), allow_interrupt_action=interruptible,
-#     weight_set=[1, 1.5, 2, 3, 4, 5]
-# )
+experimentname = "SP-DQN-interruptible=$interruptible"
+logdir = "logs/$projectname/$experimentname"
+env = AWAStarControlEnv(SlidingPuzzle(4:4, 50:60); node_budget=100000, monitoring_interval=100000÷20,
+    α=1, β=log(1+0.25), allow_interrupt_action=interruptible,
+    weight_set=[1, 1.5, 2, 3, 4, 5]
+)
 # ----------------------------------------------------------------------
 
 # ------------- Uncomment for Inverse Sliding Puzzle -------------
