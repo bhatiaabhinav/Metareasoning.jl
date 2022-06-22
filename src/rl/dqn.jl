@@ -1,7 +1,7 @@
 using ReinforcementLearning
 using Random
 using Zygote: Grads, Zygote
-using Flux
+using Flux: params, cpu, gpu, Flux
 using CUDA
 using Flux.Optimise
 using Plots
