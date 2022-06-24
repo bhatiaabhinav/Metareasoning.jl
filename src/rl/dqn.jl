@@ -119,7 +119,7 @@ function (d::DQN)(::PostActStage, env::AbstractEnv)
         terminate_trajectory!(d.exp_buff, d.housekeeping.s′, d.housekeeping.is_s′_absorbing)
     end
 
-    if d.housekeeping.steps >= d.hyperparams.min_explore_steps && d.housekeeping.steps % max(1, d.hyperparams.train_interval) == 0
+    if d.housekeeping.steps >= d.hyperparams.min_explore_steps && d.housekeeping.steps % d.hyperparams.train_interval == 0
         dqn_train_from_buffer!(d, d.exp_buff, 1)
     end
 
@@ -164,7 +164,7 @@ function dqn_train_from_buffer!(d::DQN{ST, SN, NA, R, SNp1}, buffer::ExperienceB
         πa′::Matrix{Float32} = get_action_probabilities(d.qmodel(s′), NA, ϵ′)  # probability of actions on s′ under the current policy
         v′::Vector{Float32} = sum(πa′ .* d.target_qmodel(s′), dims=1)[1, :]  # Value of s′ under the current policy
         y::Vector{Float32} = r + d.hyperparams.γ * ((1f0 .- s′∞) .* v′)  # These should be the q-values of (s,a)
-        for i in mb_size
+        for i in 1:mb_size
             q[a[i], i] = y[i]  # Modify the current q values appropriately for each state in the minibatch
         end
 
