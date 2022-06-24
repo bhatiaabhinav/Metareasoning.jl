@@ -79,16 +79,20 @@ end
 softmax
 
 """yᵢ = exp(xᵢ/α) / (∑ⱼ exp(xⱼ/α)). When temperature α=0, yᵢ = 1 for argmax(x) otherwise 0."""
-function softmax_with_temperature(x::AbstractArray{T}; α::T)::Array{T} where {T <: Real}
+function softmax_with_temperature(x::AbstractVector{T}; α::T)::AbstractVector{T} where {T <: Real}
+    return @views softmax_with_temperature(Flux.unsqueeze(x, 2); α=α)[:, 1]
+end
+
+"""Batch version of softmax_with_temperature"""
+function softmax_with_temperature(x::AbstractMatrix{T}; α::T)::Matrix{T} where {T <: Real}
     if α > 0
-        max_x::T = maximum(x)
-        _x::Array{T} = @. (x - max_x) / T(α)
-        exps::Array{T} = exp.(_x)
-        return exps ./ sum(exps)
+        max_x::AbstractMatrix{T} = maximum(x, dims=1)
+        _x::Matrix{T} = (x .- max_x) / T(α)
+        exps::Matrix{T} = exp.(_x)
+        return exps ./ sum(exps, dims=1)
     else
-        p = zeros(T, length(x))
-        a = argmax(x)
-        p[a] = 1
+        p::Matrix{T} = zeros(T, size(x))
+        p[argmax(x, dims=1)] .= T(1)
         return p
     end
 end

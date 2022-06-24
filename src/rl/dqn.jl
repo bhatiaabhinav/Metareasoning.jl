@@ -83,7 +83,7 @@ function (d::DQN{ST, SN, NA})(env::AbstractEnv) where {ST, SN, NA}
         return rand(d.housekeeping.exploration_rng, 1:NA)
     else
         qvalues = env |> state |> d.qmodel
-        return boltzman_sample(qvalues, α=0.001)  # A little "soft" argmax
+        return boltzman_sample(qvalues, α=0.001f0)  # A little "soft" argmax
     end
 end
 
@@ -136,9 +136,7 @@ function (d::DQN)(::PostEpisodeStage, env::AbstractEnv)
 end
 
 function get_action_probabilities(q::Matrix{Float32}, num_actions::Int, ϵ::Float32)::Matrix{Float32}
-    πa::Matrix{Float32} = fill(ϵ / num_actions, size(q))
-    πa[argmax(q, dims=1)] .+= 1 - ϵ
-    return πa
+    return ϵ / num_actions .+ (1 - ϵ) * softmax_with_temperature(q, α=0.001f0)
 end
 
 
