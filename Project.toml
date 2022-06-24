@@ -1,7 +1,7 @@
 name = "Metareasoning"
 uuid = "1e9f7732-dbfb-4737-9f6f-bb5b7251deba"
 authors = ["Abhinav Bhatia <abhinav.bhatia.me@gmail.com>", "Samer Nashed <samernashed@gmail.com>", "Justin Svegliato <justin.svegliato@gmail.com>"]
-version = "1.1.0"
+version = "1.1.1"
 
 [deps]
 AnytimeWeightedAStar = "ec8c4e8f-3dff-4cc6-be8a-faba0f6c4cb5"
