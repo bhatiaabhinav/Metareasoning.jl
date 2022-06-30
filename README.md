@@ -42,7 +42,7 @@ Go through the file `aastar_dqn.jl`, uncomment the code specific to the desired 
 julia --project=. aastar_dqn.jl
 ```
 
-<center><img src="https://github.com/bhatiaabhinav/Metareasoning.jl/blob/main/sp_example.gif" width="300"/></center>
+<center><img src="https://github.com/bhatiaabhinav/Metareasoning.jl/blob/main/sp_example.gif" width="200"/></center>
 
 
 ----------------------------------------------
